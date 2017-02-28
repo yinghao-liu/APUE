@@ -15,9 +15,21 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 int main(int argc,char **argv)
 {
-	
+	pid_t pid;
+	pid = fork();
+	if (pid < 0){ // error
+		perror("fork");
+	}else if (pid == 0){//child process
+		printf("this is child process\n");	
+		exit(0);
+	}else{
+		printf("this is parent process\n");	
+		sleep(5);
+	}
 	return 0;
 }
